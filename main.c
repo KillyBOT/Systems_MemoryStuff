@@ -11,6 +11,10 @@ int main(){
 
   print_list(head);
 
+  printf("Removing 4\n");
+  head = remove_front(head, 4);
+  print_list(head);
+
   printf("Emptying list...\n");
   head = free_list(head);
   print_list(head);

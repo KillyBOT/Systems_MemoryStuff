@@ -26,11 +26,26 @@ struct node* insert_front(struct node* head, int cargo){
 struct node* free_list(struct node* head){
   struct node* currentNode = head;
   struct node* nextNode;
-  while(currentNode != NULL){
+  while(nextNode != NULL){
     nextNode = currentNode->nextNode;
     free(currentNode);
     currentNode = nextNode;
   }
 
+  return currentNode;
+}
+
+struct node* remove_front(struct node* head, int cargo){
+  struct node* currentNode = head;
+  if(head == NULL) return NULL;
+  struct node* nextNode = head->nextNode;
+  while(nextNode != NULL){
+    if(nextNode->cargo == cargo){
+      currentNode->nextNode = nextNode->nextNode;
+      free(nextNode);
+    }
+    currentNode = currentNode->nextNode;
+    nextNode = currentNode->nextNode;
+  }
   return head;
 }
